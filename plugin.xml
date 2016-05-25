@@ -13,12 +13,21 @@
             categoryId="ClassSaver.commands.category"
             id="ClassSaver.commands.saveClass">
       </command>
+      <command
+            name="Configure"
+            categoryId="ClassSaver.commands.category"
+            id="ClassSaver.commands.configure">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             commandId="ClassSaver.commands.saveClass"
-            class="de.niklasmerz.classsaver.handlers.ClassSaverHandler">
+            class="de.niklasmerz.classsaver.handlers.SaveHandler">
+      </handler>
+      <handler
+            commandId="ClassSaver.commands.configure"
+            class="de.niklasmerz.classsaver.handlers.ConfigureHandler">
       </handler>
    </extension>
    <extension
@@ -41,7 +50,12 @@
             <command
                   commandId="ClassSaver.commands.saveClass"
                   mnemonic="S"
-                  id="ClassSaver.menus.sampleCommand">
+                  id="ClassSaver.menus.saveClass">
+            </command>
+            <command
+                  commandId="ClassSaver.commands.configure"
+                  mnemonic="S"
+                  id="ClassSaver.menus.configure">
             </command>
          </menu>
       </menuContribution>
@@ -53,7 +67,7 @@
                   commandId="ClassSaver.commands.saveClass"
                   icon="icons/sample.gif"
                   tooltip="Save configured class"
-                  id="ClassSaver.toolbars.sampleCommand">
+                  id="ClassSaver.toolbars.saveClass">
             </command>
          </toolbar>
       </menuContribution>
