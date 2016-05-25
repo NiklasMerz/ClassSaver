@@ -52,7 +52,7 @@
             <command
                   commandId="ClassSaver.commands.sampleCommand"
                   icon="icons/sample.gif"
-                  tooltip="Say hello world"
+                  tooltip="Save configured class"
                   id="ClassSaver.toolbars.sampleCommand">
             </command>
          </toolbar>
