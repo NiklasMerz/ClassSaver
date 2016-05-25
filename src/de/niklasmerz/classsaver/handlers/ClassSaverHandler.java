@@ -18,11 +18,11 @@ import org.eclipse.jface.dialogs.MessageDialog;
  * @see org.eclipse.core.commands.IHandler
  * @see org.eclipse.core.commands.AbstractHandler
  */
-public class SampleHandler extends AbstractHandler {
+public class ClassSaverHandler extends AbstractHandler {
 	/**
 	 * The constructor.
 	 */
-	public SampleHandler() {
+	public ClassSaverHandler() {
 	}
 
 	/**
@@ -32,21 +32,23 @@ public class SampleHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		String path = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		path = path + "/test/src/test/test.java";
+		String output = path;
 
 		try {
+			output = "Saved: " + path;
 			//Read and rewrite completely
 			FileWriter out = new FileWriter(path, true);
 			out.write(" ");
 			out.close();
 		} catch(FileNotFoundException e){
-			path = "Not found: " + path;
+			output = "Not found: " + path;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-		MessageDialog.openInformation(window.getShell(), "ClassSaver", path);
+		MessageDialog.openInformation(window.getShell(), "ClassSaver", output);
 		return null;
 	}
 }
