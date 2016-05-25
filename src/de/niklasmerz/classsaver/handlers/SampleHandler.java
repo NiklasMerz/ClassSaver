@@ -36,7 +36,7 @@ public class SampleHandler extends AbstractHandler {
 		try {
 			//Read and rewrite completely
 			FileWriter out = new FileWriter(path, true);
-			out.write("");
+			out.write(" ");
 			out.close();
 		} catch(FileNotFoundException e){
 			path = "Not found: " + path;
