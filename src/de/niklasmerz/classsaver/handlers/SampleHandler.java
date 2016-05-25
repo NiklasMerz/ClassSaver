@@ -34,6 +34,7 @@ public class SampleHandler extends AbstractHandler {
 		path = path + "/test/src/test/test.java";
 
 		try {
+			//Read and rewrite completely
 			FileWriter out = new FileWriter(path, true);
 			out.write("");
 			out.close();
