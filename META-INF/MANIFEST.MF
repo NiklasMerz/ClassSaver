@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: ClassSaver;singleton:=true
+Bundle-SymbolicName: de.niklasmerz.classsaver;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.niklasmerz.classsaver.Activator
 Require-Bundle: org.eclipse.ui,
