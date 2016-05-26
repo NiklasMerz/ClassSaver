@@ -5,7 +5,6 @@ import javax.swing.JTextField;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.ResourcesPlugin;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -32,12 +31,7 @@ public class ConfigureHandler extends ClassSaver{
 		JOptionPane pane = new JOptionPane(message, JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
 		pane.createDialog(null, "ClassSaver Settings").setVisible(true);
 
-		String workspacepath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		String fullPath = pathField.getText();
-		if(!fullPath.contains(workspacepath)){
-			fullPath = workspacepath + fullPath;
-		}
-		
 		preferenceStore.setValue(PATH_KEY, fullPath);
 
 		loadSettings();
