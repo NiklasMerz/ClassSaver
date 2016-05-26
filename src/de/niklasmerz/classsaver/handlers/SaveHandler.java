@@ -26,6 +26,7 @@ public class SaveHandler extends ClassSaver {
 	 * Savae configured file
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		loadSettings();
 		String output = path;
 
 		try {
