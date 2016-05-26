@@ -65,7 +65,7 @@
                id="ClassSaver.toolbars.classSaverToolbar">
             <command
                   commandId="ClassSaver.commands.saveClass"
-                  icon="icons/sample.gif"
+                  icon="icons/8.gif"
                   tooltip="%command.tooltip"
                   id="ClassSaver.toolbars.saveClass">
             </command>
