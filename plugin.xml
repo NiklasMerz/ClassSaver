@@ -5,16 +5,16 @@
    <extension
          point="org.eclipse.ui.commands">
       <category
-            name="Class Saver"
+            name="%category.name"
             id="ClassSaver.commands.category">
       </category>
       <command
-            name="Save class"
+            name="%command.name"
             categoryId="ClassSaver.commands.category"
             id="ClassSaver.commands.saveClass">
       </command>
       <command
-            name="Configure"
+            name="%command.name.0"
             categoryId="ClassSaver.commands.category"
             id="ClassSaver.commands.configure">
       </command>
@@ -44,17 +44,17 @@
       <menuContribution
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
-               label="ClassSaver"
-               mnemonic="M"
+               label="%menu.label"
+               mnemonic="%menu.mnemonic"
                id="ClassSaver.menus.sampleMenu">
             <command
                   commandId="ClassSaver.commands.saveClass"
-                  mnemonic="S"
+                  mnemonic="%command.mnemonic"
                   id="ClassSaver.menus.saveClass">
             </command>
             <command
                   commandId="ClassSaver.commands.configure"
-                  mnemonic="S"
+                  mnemonic="%command.mnemonic.0"
                   id="ClassSaver.menus.configure">
             </command>
          </menu>
@@ -66,7 +66,7 @@
             <command
                   commandId="ClassSaver.commands.saveClass"
                   icon="icons/sample.gif"
-                  tooltip="Save configured class"
+                  tooltip="%command.tooltip"
                   id="ClassSaver.toolbars.saveClass">
             </command>
          </toolbar>

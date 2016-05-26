@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ClassSaver
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: ClassSaver;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.niklasmerz.classsaver.Activator
@@ -9,3 +9,5 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.core.resources
+Export-Package: de.niklasmerz.classsaver,
+ de.niklasmerz.classsaver.handlers
