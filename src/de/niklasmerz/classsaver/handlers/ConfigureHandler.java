@@ -23,8 +23,7 @@ public class ConfigureHandler extends ClassSaver{
 	}
 
 	/**
-	 * the command has been executed, so extract extract the needed information
-	 * from the application context.
+	 * Open Config Dialog
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		JTextField pathField = new JTextField(path);

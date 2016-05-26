@@ -21,12 +21,18 @@ public abstract class ClassSaver extends AbstractHandler{
 	IPreferenceStore preferenceStore;
 	String path;
 	
+	/**
+	 * Get preferences
+	 */
 	public ClassSaver(){
 		preferenceStore = Activator.getDefault().getPreferenceStore();
 		preferenceStore.setDefault(PATH_KEY, DEFAULT_PATH);
 		loadSettings();
 	}
 	
+	/**
+	 * Load Settigns in fields
+	 */
 	protected void loadSettings() {
 		path = preferenceStore.getString(PATH_KEY);
 	}

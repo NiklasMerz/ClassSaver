@@ -23,8 +23,7 @@ public class SaveHandler extends ClassSaver {
 	}
 
 	/**
-	 * the command has been executed, so extract extract the needed information
-	 * from the application context.
+	 * Savae configured file
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		String output = path;
