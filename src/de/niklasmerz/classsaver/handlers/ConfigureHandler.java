@@ -39,7 +39,7 @@ public class ConfigureHandler extends ClassSaver{
 			fullPath = workspacepath + fullPath;
 		}
 		
-		prefs.put(PATH_KEY, fullPath);
+		preferenceStore.setValue(PATH_KEY, fullPath);
 
 		loadSettings();
 		return null;
