@@ -6,8 +6,9 @@ Bundle-Version: 1.5.1
 Bundle-Activator: de.niklasmerz.classsaver.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6,
- JRE-1.1
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8,
+ JRE-1.1,
+ JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.core.resources,
  org.eclipse.jface.databinding.preference
