@@ -1,5 +1,6 @@
 package de.niklasmerz.classsaver;
 
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -7,7 +8,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends AbstractUIPlugin implements ClassSaverStrings{
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "ClassSaver"; //$NON-NLS-1$
@@ -57,5 +58,13 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+	
+	/** 
+	 * Initializes a preference store with default preference values 
+	 * for this plug-in.
+	 */
+	protected void initializeDefaultPreferences(IPreferenceStore store) {
+		store.setDefault(PATH_KEY, DEFAULT_PATH);
 	}
 }

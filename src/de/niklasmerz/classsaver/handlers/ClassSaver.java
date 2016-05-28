@@ -8,16 +8,14 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 import de.niklasmerz.classsaver.Activator;
+import de.niklasmerz.classsaver.ClassSaverStrings;
 
 /**
  * @author niklas
  *
  */
-public abstract class ClassSaver extends AbstractHandler{
-	static final String PLUGIN_ID = "ClassSaver";
-	static final String PATH_KEY = "path";
-	static final String SHOWCONFIRM_KEY = "showConfirm";
-	static final String DEFAULT_PATH = "/webint.nsf/com/gi/crm/GI8.java";
+public abstract class ClassSaver extends AbstractHandler implements ClassSaverStrings{
+	
 	
 	IPreferenceStore preferenceStore;
 	String path;
