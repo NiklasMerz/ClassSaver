@@ -13,21 +13,12 @@
             categoryId="ClassSaver.commands.category"
             id="ClassSaver.commands.saveClass">
       </command>
-      <command
-            name="%command.name.0"
-            categoryId="ClassSaver.commands.category"
-            id="ClassSaver.commands.configure">
-      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             commandId="ClassSaver.commands.saveClass"
             class="de.niklasmerz.classsaver.handlers.SaveHandler">
-      </handler>
-      <handler
-            commandId="ClassSaver.commands.configure"
-            class="de.niklasmerz.classsaver.handlers.ConfigureHandler">
       </handler>
    </extension>
    <extension
@@ -52,11 +43,6 @@
                   mnemonic="%command.mnemonic"
                   id="ClassSaver.menus.saveClass">
             </command>
-            <command
-                  commandId="ClassSaver.commands.configure"
-                  mnemonic="%command.mnemonic.0"
-                  id="ClassSaver.menus.configure">
-            </command>
          </menu>
       </menuContribution>
       <menuContribution
@@ -72,5 +58,11 @@
          </toolbar>
       </menuContribution>
    </extension>
+   <extension point="org.eclipse.ui.preferencePages">
+ 	<page id="PreferencePage"
+ 		name="%page.name"
+    		class="de.niklasmerz.classsaver.ClassSaverPreferencePage">
+   	</page>
+	</extension>
 
 </plugin>
