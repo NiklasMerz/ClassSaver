@@ -7,6 +7,8 @@ import java.io.IOException;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
+import de.niklasmerz.classsaver.CSLog;
+
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
  * 
@@ -23,7 +25,7 @@ public class SaveHandler extends ClassSaver {
 	}
 
 	/**
-	 * Savae configured file
+	 * Save configured file
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		loadSettings();
@@ -36,12 +38,12 @@ public class SaveHandler extends ClassSaver {
 			out.write(" ");
 			out.close();
 		} catch (FileNotFoundException e) {
-			output = "Not found: " + path;
+			CSLog.logError(e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			CSLog.logError(e);
 		}
-		System.out.println(output);
+		CSLog.logInfo(output);
 		return null;
 	}
 }
