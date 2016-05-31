@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
@@ -44,6 +46,7 @@ public class SaveHandler extends ClassSaver {
 			CSLog.logError(e);
 		}
 		CSLog.logInfo(output);
+		JOptionPane.showMessageDialog(null, output);
 		return null;
 	}
 }
