@@ -33,20 +33,20 @@ public class SaveHandler extends ClassSaver {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		loadSettings();
-		String output = "TODO PATH";
+		String output = project + "/" + path + "/" + className;
 
 		IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
-		IProject myProject = myWorkspaceRoot.getProject("webint.nsf");
+		IProject myProject = myWorkspaceRoot.getProject(project);
 		if (myProject.exists()){
 			try {
 				if(!myProject.isOpen()){
 					myProject.open(null);
 				}
 				
-				IFolder folder = myProject.getFolder("src");
+				IFolder folder = myProject.getFolder(path);
 				   if(folder.exists()) {
-				      IFile file = folder.getFile("GI8.java");
+				      IFile file = folder.getFile(className);
 				      String inputString = "\n";
 				      InputStream in = new ByteArrayInputStream(inputString.getBytes());
 				      file.appendContents(in, true, false, null);

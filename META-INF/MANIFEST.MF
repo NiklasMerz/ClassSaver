@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ClassSaverDomino
-Bundle-SymbolicName: de.niklasmerz.classsaver.domino;singleton:=true
-Bundle-Version: 0.6.0
+Bundle-Name: ClassSaver
+Bundle-SymbolicName: de.niklasmerz.classsaver;singleton:=true
+Bundle-Version: 0.7.2
 Bundle-Activator: de.niklasmerz.classsaver.Activator
 Bundle-Vendor: Niklas Merz
 Require-Bundle: org.eclipse.ui,
