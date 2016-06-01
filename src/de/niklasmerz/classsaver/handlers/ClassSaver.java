@@ -27,12 +27,12 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 	public ClassSaver(){
 		workspacepath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		preferenceStore = Activator.getDefault().getPreferenceStore();
-		preferenceStore.setDefault(PATH_KEY, "");
+		preferenceStore.setDefault(PATH_KEY, DEFAULT_PATH);
 		loadSettings();
 	}
 	
 	/**
-	 * Load Settings in fields
+	 * Load Settings
 	 */
 	protected void loadSettings() {
 		path = preferenceStore.getString(PATH_KEY);
