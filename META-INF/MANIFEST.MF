@@ -1,17 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: de.niklasmerz.classsaver;singleton:=true
+Bundle-Name: ClassSaverDomino
+Bundle-SymbolicName: de.niklasmerz.classsaver.domino;singleton:=true
 Bundle-Version: 0.6.0
 Bundle-Activator: de.niklasmerz.classsaver.Activator
+Bundle-Vendor: Niklas Merz
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8,
- JavaSE-1.6,
- JavaSE-1.7,
- JRE-1.1
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.core.resources
-Export-Package: de.niklasmerz.classsaver,
- de.niklasmerz.classsaver.handlers
-Bundle-Vendor: Niklas Merz

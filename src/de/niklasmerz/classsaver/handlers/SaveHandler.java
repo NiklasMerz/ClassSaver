@@ -2,8 +2,6 @@ package de.niklasmerz.classsaver.handlers;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
@@ -50,7 +48,7 @@ public class SaveHandler extends ClassSaver {
 				   if(folder.exists()) {
 				      IFile file = folder.getFile("GI8.java");
 				      String inputString = "\n";
-				      InputStream in = new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
+				      InputStream in = new ByteArrayInputStream(inputString.getBytes());
 				      file.appendContents(in, true, false, null);
 				   }else{
 					   CSLog.logInfo("Folder not found");
