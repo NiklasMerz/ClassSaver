@@ -1,13 +1,17 @@
 package de.niklasmerz.classsaver.handlers;
 
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import javax.swing.JOptionPane;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 
 import de.niklasmerz.classsaver.CSLog;
 
@@ -31,22 +35,34 @@ public class SaveHandler extends ClassSaver {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		loadSettings();
-		String output = path;
+		String output = "TODO PATH";
 
-		try {
-			output = "Saved: " + path;
-			// Read and rewrite completely
-			FileWriter out = new FileWriter(path, true);
-			out.write(" ");
-			out.close();
-		} catch (FileNotFoundException e) {
-			CSLog.logError(e);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			CSLog.logError(e);
+		IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+
+		IProject myProject = myWorkspaceRoot.getProject("webint.nsf");
+		if (myProject.exists()){
+			try {
+				if(!myProject.isOpen()){
+					myProject.open(null);
+				}
+				
+				IFolder folder = myProject.getFolder("src");
+				   if(folder.exists()) {
+				      IFile file = folder.getFile("GI8.java");
+				      String inputString = "\n";
+				      InputStream in = new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
+				      file.appendContents(in, true, false, null);
+				   }else{
+					   CSLog.logInfo("Folder not found");
+				   }
+				
+			} catch (CoreException e) {
+				CSLog.logError(e);
+			}
+			
 		}
 		CSLog.logInfo(output);
-		JOptionPane.showMessageDialog(null, output);
+		// JOptionPane.showMessageDialog(null, output);
 		return null;
 	}
 }
