@@ -5,11 +5,11 @@
    <extension
          point="org.eclipse.ui.commands">
       <category
-            name="%category.name"
+            name="ClassSaver"
             id="ClassSaver.commands.category">
       </category>
       <command
-            name="%command.name"
+            name="Save Class"
             categoryId="ClassSaver.commands.category"
             id="ClassSaver.commands.saveClass">
       </command>
@@ -35,12 +35,12 @@
       <menuContribution
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
-               label="%menu.label"
-               mnemonic="%menu.mnemonic"
+               label="ClassSaver"
+               mnemonic="ClassSaverMenu"
                id="ClassSaver.menus.sampleMenu">
             <command
                   commandId="ClassSaver.commands.saveClass"
-                  mnemonic="%command.mnemonic"
+                  mnemonic="ClassSaverMenu"
                   id="ClassSaver.menus.saveClass">
             </command>
          </menu>
@@ -52,7 +52,7 @@
             <command
                   commandId="ClassSaver.commands.saveClass"
                   icon="icons/8.gif"
-                  tooltip="%command.tooltip"
+                  tooltip="Save Class"
                   id="ClassSaver.toolbars.saveClass">
             </command>
          </toolbar>
@@ -60,7 +60,7 @@
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
  	<page id="PreferencePage"
- 		name="%page.name"
+ 		name="Class Saver"
     		class="de.niklasmerz.classsaver.ClassSaverPreferencePage">
    	</page>
 	</extension>

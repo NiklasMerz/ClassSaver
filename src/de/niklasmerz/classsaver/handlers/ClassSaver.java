@@ -17,9 +17,11 @@ import de.niklasmerz.classsaver.ClassSaverStrings;
 public abstract class ClassSaver extends AbstractHandler implements ClassSaverStrings{
 	
 	
-	IPreferenceStore preferenceStore;
-	String path;
-	String workspacepath;
+	protected IPreferenceStore preferenceStore;
+	protected String path;
+	protected String project;
+	protected String className;
+	protected String workspacepath;
 	
 	/**
 	 * Get preferences
@@ -36,5 +38,8 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 	 */
 	protected void loadSettings() {
 		path = preferenceStore.getString(PATH_KEY);
+		project = preferenceStore.getString(PROJECT_KEY);
+		className = preferenceStore.getString(CLASS_KEY);
+		
 	}
 }

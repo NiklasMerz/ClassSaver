@@ -1,9 +1,6 @@
 package de.niklasmerz.classsaver.handlers;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
@@ -35,22 +32,21 @@ public class SaveHandler extends ClassSaver {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		loadSettings();
-		String output = "TODO PATH";
+		String output = project + "/" + path + "/" + className;
 
 		IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
-		IProject myProject = myWorkspaceRoot.getProject("webint.nsf");
+		IProject myProject = myWorkspaceRoot.getProject(project);
 		if (myProject.exists()){
 			try {
 				if(!myProject.isOpen()){
 					myProject.open(null);
 				}
 				
-				IFolder folder = myProject.getFolder("src");
+				IFolder folder = myProject.getFolder(path);
 				   if(folder.exists()) {
-				      IFile file = folder.getFile("GI8.java");
-				      String inputString = "\n";
-				      InputStream in = new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8));
+				      IFile file = folder.getFile(className);
+				      InputStream in = file.getContents();
 				      file.appendContents(in, true, false, null);
 				   }else{
 					   CSLog.logInfo("Folder not found");
