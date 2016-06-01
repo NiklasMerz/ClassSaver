@@ -1,6 +1,5 @@
 package de.niklasmerz.classsaver.handlers;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -47,8 +46,7 @@ public class SaveHandler extends ClassSaver {
 				IFolder folder = myProject.getFolder(path);
 				   if(folder.exists()) {
 				      IFile file = folder.getFile(className);
-				      String inputString = "\n";
-				      InputStream in = new ByteArrayInputStream(inputString.getBytes());
+				      InputStream in = file.getContents();
 				      file.appendContents(in, true, false, null);
 				   }else{
 					   CSLog.logInfo("Folder not found");
