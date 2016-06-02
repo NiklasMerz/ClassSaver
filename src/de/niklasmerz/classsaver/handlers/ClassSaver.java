@@ -30,6 +30,8 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 		workspacepath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		preferenceStore = Activator.getDefault().getPreferenceStore();
 		preferenceStore.setDefault(PATH_KEY, DEFAULT_PATH);
+		preferenceStore.setDefault(PROJECT_KEY, DEFAULT_PROJECT);
+		preferenceStore.setDefault(CLASS_KEY, DEFAULT_CLASS);
 		loadSettings();
 	}
 	
