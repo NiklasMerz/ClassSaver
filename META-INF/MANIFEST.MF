@@ -8,5 +8,5 @@ Bundle-Vendor: Niklas Merz
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.core.resources
+Bundle-ActivationPolicy: lazy

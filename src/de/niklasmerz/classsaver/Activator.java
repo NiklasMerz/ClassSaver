@@ -2,8 +2,12 @@ package de.niklasmerz.classsaver;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
+import de.niklasmerz.classsaver.listeners.SaveListener;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -29,6 +33,11 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings{
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		
+		//Autosave
+		//TODO check prefs
+		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
+        commandService.addExecutionListener(new SaveListener());
 	}
 
 	/*
@@ -66,7 +75,8 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings{
 	 */
 	protected void initializeDefaultPreferences(IPreferenceStore store) {
 		store.setDefault(PATH_KEY, DEFAULT_PATH);
-		store.setValue(PROJECT_KEY, DEFAULT_PROJECT);
-		store.setValue(CLASS_KEY, DEFAULT_CLASS);
+		store.setDefault(PROJECT_KEY, DEFAULT_PROJECT);
+		store.setDefault(CLASS_KEY, DEFAULT_CLASS);
+		store.setDefault(AUTO_KEY, DEFAULT_AUTO);
 	}
 }

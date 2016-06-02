@@ -1,6 +1,7 @@
 package de.niklasmerz.classsaver.handlers;
 
 import java.io.InputStream;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;

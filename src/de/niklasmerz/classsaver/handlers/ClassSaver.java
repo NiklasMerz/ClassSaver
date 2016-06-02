@@ -24,6 +24,11 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 	protected String workspacepath;
 	
 	/**
+	 * TODO Necessary?
+	 */
+	protected Boolean auto;
+	
+	/**
 	 * Get preferences
 	 */
 	public ClassSaver(){
@@ -32,6 +37,7 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 		preferenceStore.setDefault(PATH_KEY, DEFAULT_PATH);
 		preferenceStore.setDefault(PROJECT_KEY, DEFAULT_PROJECT);
 		preferenceStore.setDefault(CLASS_KEY, DEFAULT_CLASS);
+		preferenceStore.setDefault(AUTO_KEY, DEFAULT_AUTO);
 		loadSettings();
 	}
 	
@@ -42,6 +48,6 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 		path = preferenceStore.getString(PATH_KEY);
 		project = preferenceStore.getString(PROJECT_KEY);
 		className = preferenceStore.getString(CLASS_KEY);
-		
+		auto = preferenceStore.getBoolean(AUTO_KEY);
 	}
 }

@@ -3,6 +3,7 @@
  */
 package de.niklasmerz.classsaver;
 
+import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
@@ -18,6 +19,7 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 	private StringFieldEditor pathField;
 	private StringFieldEditor projectField;
 	private StringFieldEditor classField;
+	private BooleanFieldEditor autoField;
 
 	@Override
 	public void init(IWorkbench workbench) {
@@ -31,6 +33,7 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 		projectField.loadDefault();
 		pathField.loadDefault();
 		classField.loadDefault();
+		autoField.loadDefault();
 	}
 	
 	/** 
@@ -46,10 +49,12 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 		projectField = new StringFieldEditor(PROJECT_KEY, "Project", getFieldEditorParent());
 		pathField = new StringFieldEditor(PATH_KEY, "Path", getFieldEditorParent());
 		classField = new StringFieldEditor(CLASS_KEY, "Class File", getFieldEditorParent());
+		autoField = new BooleanFieldEditor(AUTO_KEY, "Save automatically", getFieldEditorParent());
 		
 		addField(projectField);
 		addField(pathField);
 		addField(classField);
+		addField(autoField);
 	}
 
 }

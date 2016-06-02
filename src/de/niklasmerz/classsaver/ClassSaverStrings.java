@@ -9,4 +9,6 @@ public interface ClassSaverStrings {
 	static final String DEFAULT_PATH = "Code/Java/com/gi/crm";
 	static final String DEFAULT_PROJECT = "WebInt.nsf";
 	static final String DEFAULT_CLASS = "GI8Class.java";
+	static final String AUTO_KEY = "auto";
+	static final Boolean DEFAULT_AUTO = true;
 }
