@@ -1,25 +1,28 @@
 package de.niklasmerz.classsaver;
 
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import de.niklasmerz.classsaver.listeners.SaveListener;
+import de.niklasmerz.classsaver.handlers.DeltaVisitor;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin implements ClassSaverStrings{
+public class Activator extends AbstractUIPlugin implements ClassSaverStrings {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "ClassSaver"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor
 	 */
@@ -28,21 +31,39 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings{
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	 * 
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
+	 * BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		
-		//Autosave
-		//TODO check prefs
-		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
-        commandService.addExecutionListener(new SaveListener());
+
+		// Autosave TODO Load start with eclipse
+		// TODO check prefs
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
+			public void resourceChanged(IResourceChangeEvent event) {
+
+				// TODO only pre build events
+				if (event.getType() == IResourceChangeEvent.POST_CHANGE){
+					IResourceDelta delta = event.getDelta();
+					try {
+						delta.accept(new DeltaVisitor());
+					} catch (CoreException e) {
+						e.printStackTrace();
+					}
+				}
+
+				CSLog.logInfo("Something changed!");
+			}
+		});
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	 * 
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.
+	 * BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -59,19 +80,20 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings{
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path
+	 * Returns an image descriptor for the image file at the given plug-in
+	 * relative path
 	 *
-	 * @param path the path
+	 * @param path
+	 *            the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
-	
-	/** 
-	 * Initializes a preference store with default preference values 
-	 * for this plug-in.
+
+	/**
+	 * Initializes a preference store with default preference values for this
+	 * plug-in.
 	 */
 	protected void initializeDefaultPreferences(IPreferenceStore store) {
 		store.setDefault(PATH_KEY, DEFAULT_PATH);

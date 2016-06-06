@@ -4,12 +4,9 @@
 ### How To Install
 Eclipse:
 
-Go to help -> Install New Software and add http://niklasmerz.github.io/ClassSaver
+Go to help -> Install New Software
 
 Domino Designer:
 
 * Make sure installation of Eclipse plugins is allowed
 * Go to File -> Application -> Install -> New
-* Add http://niklasmerz.github.io/ClassSaver
-* Close Designer
-* Configure path of class in workspace directory/.metadate/.plugins/org.eclipse.core.runtime/.settings/de.niklasmerz.classsaver.prefs  
