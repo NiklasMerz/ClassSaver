@@ -11,4 +11,6 @@ public interface ClassSaverStrings {
 	static final String DEFAULT_CLASS = "GI8Class.java";
 	static final String AUTO_KEY = "auto";
 	static final Boolean DEFAULT_AUTO = true;
+	static final String EXTENSION_KEY = "fileextension";
+	static final String DEFAULT_EXTENSION = "xsp";
 }

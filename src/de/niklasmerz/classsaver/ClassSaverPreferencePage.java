@@ -20,6 +20,7 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 	private StringFieldEditor projectField;
 	private StringFieldEditor classField;
 	private BooleanFieldEditor autoField;
+	private StringFieldEditor extensionField;
 
 	@Override
 	public void init(IWorkbench workbench) {
@@ -34,6 +35,7 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 		pathField.loadDefault();
 		classField.loadDefault();
 		autoField.loadDefault();
+		extensionField.loadDefault();
 	}
 	
 	/** 
@@ -50,11 +52,13 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 		pathField = new StringFieldEditor(PATH_KEY, "Path", getFieldEditorParent());
 		classField = new StringFieldEditor(CLASS_KEY, "Class File", getFieldEditorParent());
 		autoField = new BooleanFieldEditor(AUTO_KEY, "Save automatically", getFieldEditorParent());
+		extensionField = new StringFieldEditor(EXTENSION_KEY, "File extension", getFieldEditorParent());
 		
 		addField(projectField);
 		addField(pathField);
 		addField(classField);
 		addField(autoField);
+		addField(extensionField);
 	}
 
 }

@@ -1,34 +1,40 @@
 package de.niklasmerz.classsaver.handlers;
 
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 
-public class DeltaVisitor implements IResourceDeltaVisitor {
+import de.niklasmerz.classsaver.CSLog;
+
+public class DeltaVisitor extends ClassSaver implements IResourceDeltaVisitor {
 	
-	//TODO detect event type and file extension
 	//TODO Autofind project and GI8Class
-	//TODO Run command
+	
+	public DeltaVisitor(){
+		super();
+	}
 	
 	public boolean visit(IResourceDelta delta) {
 		IResource res = delta.getResource();
-		switch (delta.getKind()) {
-		case IResourceDelta.ADDED:
-			System.out.print("Resource ");
-			System.out.print(res.getFullPath());
-			System.out.println(" was added.");
-			break;
-		case IResourceDelta.REMOVED:
-			System.out.print("Resource ");
-			System.out.print(res.getFullPath());
-			System.out.println(" was removed.");
-			break;
-		case IResourceDelta.CHANGED:
-			System.out.print("Resource ");
-			System.out.print(res.getFullPath());
-			System.out.println(" has changed.");
-			break;
+		
+		if(fileExtension.equals("java")){
+			CSLog.logInfo("Loop Detected");
+			return true;
 		}
-		return true; // visit the children
+		
+		if(fileExtension.equals(res.getFileExtension())){
+			saveConfiguredClass();
+		}
+		
+		return true;
+	}
+
+	@Override
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		// Ignore
+		//TODO Better structure
+		return null;
 	}
 }

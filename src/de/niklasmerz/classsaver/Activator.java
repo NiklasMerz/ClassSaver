@@ -7,6 +7,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.IStartup;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -15,7 +16,8 @@ import de.niklasmerz.classsaver.handlers.DeltaVisitor;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin implements ClassSaverStrings {
+public class Activator extends AbstractUIPlugin implements ClassSaverStrings, IStartup
+{
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "ClassSaver"; //$NON-NLS-1$
@@ -41,6 +43,7 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings {
 
 		// Autosave TODO Load start with eclipse
 		// TODO check prefs
+		System.out.println("Started");
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
 			public void resourceChanged(IResourceChangeEvent event) {
 
@@ -54,7 +57,7 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings {
 					}
 				}
 
-				CSLog.logInfo("Something changed!");
+				//CSLog.logInfo("Something changed!");
 			}
 		});
 	}
@@ -100,5 +103,10 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings {
 		store.setDefault(PROJECT_KEY, DEFAULT_PROJECT);
 		store.setDefault(CLASS_KEY, DEFAULT_CLASS);
 		store.setDefault(AUTO_KEY, DEFAULT_AUTO);
+	}
+
+	@Override
+	public void earlyStartup() {
+		//Ignore
 	}
 }
