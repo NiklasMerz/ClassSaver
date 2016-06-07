@@ -92,6 +92,7 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 			}
 			
 		}
+		System.out.println(output);
 		CSLog.logInfo(output);
 	}
 }

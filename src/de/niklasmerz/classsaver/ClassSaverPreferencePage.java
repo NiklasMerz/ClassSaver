@@ -43,6 +43,13 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 	 */
 	public boolean performOk() {
 		pathField.store();
+		projectField.store();
+		classField.store();
+		
+		Activator.removeChangelistener();
+		
+		autoField.store();
+		extensionField.store();
 		return super.performOk();
 	}
 

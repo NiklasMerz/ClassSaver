@@ -5,6 +5,7 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IStartup;
@@ -25,10 +26,34 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings, IS
 	// The shared instance
 	private static Activator plugin;
 
+	private boolean auto;
+
+	private static IResourceChangeListener listener = new IResourceChangeListener() {
+		public void resourceChanged(IResourceChangeEvent event) {
+
+			// TODO only pre build events
+			//if (event.getType() == IResourceChangeEvent.POST_CHANGE){
+				IResourceDelta delta = event.getDelta();
+				try {
+					delta.accept(new DeltaVisitor());
+				} catch (CoreException e) {
+					e.printStackTrace();
+				}
+			//}
+
+			//CSLog.logInfo("Something changed!");
+		}
+	};
+
 	/**
 	 * The constructor
 	 */
 	public Activator() {
+		//TODO first start
+		
+		auto = Platform.getPreferencesService().getBoolean(
+				PLUGIN_PACKAGE, AUTO_KEY,
+			    DEFAULT_AUTO, null);
 	}
 
 	/*
@@ -41,25 +66,12 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings, IS
 		super.start(context);
 		plugin = this;
 
-		// Autosave TODO Load start with eclipse
 		// TODO check prefs
-		System.out.println("Started");
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
-			public void resourceChanged(IResourceChangeEvent event) {
-
-				// TODO only pre build events
-				if (event.getType() == IResourceChangeEvent.POST_CHANGE){
-					IResourceDelta delta = event.getDelta();
-					try {
-						delta.accept(new DeltaVisitor());
-					} catch (CoreException e) {
-						e.printStackTrace();
-					}
-				}
-
-				//CSLog.logInfo("Something changed!");
-			}
-		});
+		if(auto){
+			System.out.println("Started listener");
+			
+			ResourcesPlugin.getWorkspace().addResourceChangeListener(listener);
+		}
 	}
 
 	/*
@@ -108,5 +120,13 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings, IS
 	@Override
 	public void earlyStartup() {
 		//Ignore
+	}
+	
+	/**
+	 * Remove
+	 */
+	public static void removeChangelistener(){
+		System.out.println("remove listener");
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(listener);
 	}
 }

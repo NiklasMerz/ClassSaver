@@ -2,6 +2,7 @@ package de.niklasmerz.classsaver;
 
 public interface ClassSaverStrings {
 	static final String PLUGIN_ID = "ClassSaver";
+	static final String PLUGIN_PACKAGE = "de.niklasmerz.classsaver";
 	static final String PATH_KEY = "path";
 	static final String CLASS_KEY = "class";
 	static final String PROJECT_KEY = "project";
