@@ -46,6 +46,7 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 		projectField.store();
 		classField.store();
 		
+		//TODO Add or remove
 		Activator.removeChangelistener();
 		
 		autoField.store();
