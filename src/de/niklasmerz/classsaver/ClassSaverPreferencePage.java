@@ -46,8 +46,12 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 		projectField.store();
 		classField.store();
 		
-		//TODO Add or remove
-		Activator.removeChangelistener();
+		if(autoField.getBooleanValue()){
+			Activator.addChangelistener();
+		}else{
+			Activator.removeChangelistener();
+		}
+		
 		
 		autoField.store();
 		extensionField.store();

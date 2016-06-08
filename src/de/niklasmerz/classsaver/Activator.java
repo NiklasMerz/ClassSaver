@@ -49,8 +49,6 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings, IS
 	 * The constructor
 	 */
 	public Activator() {
-		//TODO first start
-		
 		auto = Platform.getPreferencesService().getBoolean(
 				PLUGIN_PACKAGE, AUTO_KEY,
 			    DEFAULT_AUTO, null);
@@ -70,7 +68,7 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings, IS
 		if(auto){
 			System.out.println("Started listener");
 			
-			ResourcesPlugin.getWorkspace().addResourceChangeListener(listener);
+			addChangelistener();
 		}
 	}
 
@@ -123,10 +121,18 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings, IS
 	}
 	
 	/**
-	 * Remove
+	 * Remove listener
 	 */
 	public static void removeChangelistener(){
 		System.out.println("remove listener");
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(listener);
+	}
+	
+	/**
+	 * Add listener
+	 */
+	public static void addChangelistener(){
+		System.out.println("add listener");
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(listener);
 	}
 }
