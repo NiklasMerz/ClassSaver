@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package de.niklasmerz.classsaver.handlers;
 
@@ -11,28 +11,31 @@ import de.niklasmerz.classsaver.Activator;
 import de.niklasmerz.classsaver.ClassSaverStrings;
 
 /**
+ * Handler superclass
+ * 
  * @author niklas
  *
  */
-public abstract class ClassSaver extends AbstractHandler implements ClassSaverStrings{
-	
-	
+public abstract class ClassSaver extends AbstractHandler implements ClassSaverStrings {
+
 	protected IPreferenceStore preferenceStore;
 	protected String path;
 	protected String project;
 	protected String className;
 	protected String workspacepath;
-	
+
 	/**
 	 * Get preferences
 	 */
-	public ClassSaver(){
+	public ClassSaver() {
 		workspacepath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		preferenceStore = Activator.getDefault().getPreferenceStore();
 		preferenceStore.setDefault(PATH_KEY, DEFAULT_PATH);
+		preferenceStore.setDefault(PROJECT_KEY, DEFAULT_PROJECT);
+		preferenceStore.setDefault(CLASS_KEY, DEFAULT_CLASS);
 		loadSettings();
 	}
-	
+
 	/**
 	 * Load Settings
 	 */
@@ -40,6 +43,6 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 		path = preferenceStore.getString(PATH_KEY);
 		project = preferenceStore.getString(PROJECT_KEY);
 		className = preferenceStore.getString(CLASS_KEY);
-		
+
 	}
 }

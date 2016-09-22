@@ -2,7 +2,12 @@ package de.niklasmerz.classsaver;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-//TODO Javadoc
+
+/**
+ * Custom log class
+ * 
+ * @author niklas
+ */
 public class CSLog {
 
 	public static void logInfo(String message) {

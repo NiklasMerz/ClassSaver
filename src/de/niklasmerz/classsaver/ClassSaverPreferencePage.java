@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package de.niklasmerz.classsaver;
 
@@ -9,12 +9,14 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
+ * Eclipse preference page
+ * 
  * @author niklas
  *
  */
 public class ClassSaverPreferencePage extends FieldEditorPreferencePage
-implements IWorkbenchPreferencePage, ClassSaverStrings{
-	
+		implements IWorkbenchPreferencePage, ClassSaverStrings {
+
 	private StringFieldEditor pathField;
 	private StringFieldEditor projectField;
 	private StringFieldEditor classField;
@@ -23,7 +25,7 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 	public void init(IWorkbench workbench) {
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
 	}
-	
+
 	/**
 	 * Load defaults
 	 */
@@ -32,9 +34,9 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 		pathField.loadDefault();
 		classField.loadDefault();
 	}
-	
-	/** 
-	 * Save the color preference to the preference store.
+
+	/**
+	 * Save the preference to the preference store.
 	 */
 	public boolean performOk() {
 		pathField.store();
@@ -46,7 +48,7 @@ implements IWorkbenchPreferencePage, ClassSaverStrings{
 		projectField = new StringFieldEditor(PROJECT_KEY, "Project", getFieldEditorParent());
 		pathField = new StringFieldEditor(PATH_KEY, "Path", getFieldEditorParent());
 		classField = new StringFieldEditor(CLASS_KEY, "Class File", getFieldEditorParent());
-		
+
 		addField(projectField);
 		addField(pathField);
 		addField(classField);

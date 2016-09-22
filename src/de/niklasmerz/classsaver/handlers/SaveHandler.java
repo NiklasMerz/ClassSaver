@@ -13,14 +13,13 @@ import org.eclipse.core.runtime.CoreException;
 import de.niklasmerz.classsaver.CSLog;
 
 /**
- * Our sample handler extends AbstractHandler, an IHandler base class.
+ * Handler for saving
  * 
- * @see org.eclipse.core.commands.IHandler
- * @see org.eclipse.core.commands.AbstractHandler
+ * @author niklas
  */
 public class SaveHandler extends ClassSaver {
 	/**
-	 * The constructor.
+	 * Constructor loads settings
 	 */
 	public SaveHandler() {
 		super();
@@ -37,28 +36,27 @@ public class SaveHandler extends ClassSaver {
 		IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
 		IProject myProject = myWorkspaceRoot.getProject(project);
-		if (myProject.exists()){
+		if (myProject.exists()) {
 			try {
-				if(!myProject.isOpen()){
+				if (!myProject.isOpen()) {
 					myProject.open(null);
 				}
-				
+
 				IFolder folder = myProject.getFolder(path);
-				   if(folder.exists()) {
-				      IFile file = folder.getFile(className);
-				      InputStream in = file.getContents();
-				      file.appendContents(in, true, false, null);
-				   }else{
-					   CSLog.logInfo("Folder not found");
-				   }
-				
+				if (folder.exists()) {
+					IFile file = folder.getFile(className);
+					InputStream in = file.getContents();
+					file.appendContents(in, true, false, null);
+				} else {
+					CSLog.logInfo("Folder not found");
+				}
+
 			} catch (CoreException e) {
 				CSLog.logError(e);
 			}
-			
+
 		}
 		CSLog.logInfo(output);
-		// JOptionPane.showMessageDialog(null, output);
 		return null;
 	}
 }
