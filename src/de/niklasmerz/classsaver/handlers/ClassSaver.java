@@ -11,7 +11,6 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 import de.niklasmerz.classsaver.Activator;
@@ -24,8 +23,7 @@ import de.niklasmerz.classsaver.ClassSaverStrings;
  * @author niklas
  * 
  */
-public abstract class ClassSaver extends AbstractHandler implements
-		ClassSaverStrings {
+public abstract class ClassSaver extends AbstractHandler implements ClassSaverStrings {
 
 	protected IPreferenceStore preferenceStore;
 	protected String path;
@@ -38,8 +36,7 @@ public abstract class ClassSaver extends AbstractHandler implements
 	 * Get preferences
 	 */
 	public ClassSaver() {
-		workspacepath = ResourcesPlugin.getWorkspace().getRoot().getLocation()
-				.toString();
+		workspacepath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		preferenceStore = Activator.getDefault().getPreferenceStore();
 		preferenceStore.setDefault(PATH_KEY, DEFAULT_PATH);
 		preferenceStore.setDefault(PROJECT_KEY, DEFAULT_PROJECT);
@@ -72,11 +69,12 @@ public abstract class ClassSaver extends AbstractHandler implements
 				}
 
 				if (automode) {
-					this.saveFolder(this.path, project);
-				} else {
+					CSLog.logInfo("Paths: " + preferenceStore.getString(PATHSELECTION_KEY));
 					for (String path : this.paths) {
 						this.saveFolder(path, project);
 					}
+				} else {
+					this.saveFolder(this.path, project);
 				}
 			}
 		} catch (CoreException e) {
@@ -91,20 +89,17 @@ public abstract class ClassSaver extends AbstractHandler implements
 	 * @param project
 	 */
 	private void saveFolder(String folderPath, IProject project) {
-		IFolder folder = project.getFolder(folderPath);
 		try {
+			IFolder folder = project.getFolder(folderPath);
+			CSLog.logInfo(folder.getFullPath().toString());
 			if (folder.exists()) {
 				IFile file = folder.getFile(this.className);
 				InputStream in = file.getContents();
 				file.appendContents(in, true, false, null);
-				
-				String[] buttons = {"OK"};
-				MessageDialog dlg = new MessageDialog(null, "ClassSaver", null,
-						"Saved class" + folderPath + className,
-						MessageDialog.INFORMATION, buttons, 0);
-				dlg.open();
+
+				CSLog.logInfo(file.getFullPath().toString());
 			}
-		} catch (CoreException e) {
+		} catch (Exception e) {
 			CSLog.logError(e);
 		}
 	}
