@@ -13,12 +13,21 @@
             categoryId="ClassSaver.commands.category"
             id="ClassSaver.commands.saveClass">
       </command>
+      <command
+            categoryId="ClassSaver.commands.category"
+            id="ClassSaver.commands.autoSaveClass"
+            name="Auto Save Class">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             commandId="ClassSaver.commands.saveClass"
             class="de.niklasmerz.classsaver.handlers.SaveHandler">
+      </handler>
+      <handler
+            class="de.niklasmerz.classsaver.handlers.AutoSaveHandler"
+            commandId="ClassSaver.commands.autoSaveClass">
       </handler>
    </extension>
    <extension
@@ -28,6 +37,12 @@
             contextId="org.eclipse.ui.contexts.window"
             sequence="M1+8"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="ClassSaver.commands.autoSaveClass"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="com.ibm.designer.domino.designerAcceleratorConfigurationAll"
+            sequence="M1+9">
       </key>
    </extension>
    <extension
@@ -40,8 +55,15 @@
                id="ClassSaver.menus.sampleMenu">
             <command
                   commandId="ClassSaver.commands.saveClass"
+                  icon="icons/8.gif"
+                  id="ClassSaver.menus.saveClass"
+                  mnemonic="ClassSaverMenu">
+            </command>
+            <command
+                  commandId="ClassSaver.commands.autoSaveClass"
+                  id="ClassSaver.menus.autoSaveClass"
                   mnemonic="ClassSaverMenu"
-                  id="ClassSaver.menus.saveClass">
+                  style="push">
             </command>
          </menu>
       </menuContribution>
