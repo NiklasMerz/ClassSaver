@@ -47,7 +47,7 @@ public class AutoSaveHandler extends ClassSaver {
 						.getAdapter(IResource.class);
 				if (resource != null) {
 					project = resource.getProject();
-					this.saveProject(project);
+					this.saveProject(project, true);
 				}
 			}
 		}

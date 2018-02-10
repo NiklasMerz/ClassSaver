@@ -5,6 +5,7 @@ package de.niklasmerz.classsaver;
 
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.StringFieldEditor;
+import org.eclipse.jface.preference.ListEditor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -20,6 +21,7 @@ public class ClassSaverPreferencePage extends FieldEditorPreferencePage
 	private StringFieldEditor pathField;
 	private StringFieldEditor projectField;
 	private StringFieldEditor classField;
+	private ListEditor pathSelection;
 
 	@Override
 	public void init(IWorkbench workbench) {
@@ -33,13 +35,17 @@ public class ClassSaverPreferencePage extends FieldEditorPreferencePage
 		projectField.loadDefault();
 		pathField.loadDefault();
 		classField.loadDefault();
+		pathSelection.loadDefault();
 	}
 
 	/**
 	 * Save the preference to the preference store.
 	 */
 	public boolean performOk() {
+		projectField.store();
 		pathField.store();
+		classField.store();
+		pathSelection.store();
 		return super.performOk();
 	}
 
@@ -48,10 +54,12 @@ public class ClassSaverPreferencePage extends FieldEditorPreferencePage
 		projectField = new StringFieldEditor(PROJECT_KEY, "Project", getFieldEditorParent());
 		pathField = new StringFieldEditor(PATH_KEY, "Path", getFieldEditorParent());
 		classField = new StringFieldEditor(CLASS_KEY, "Class File", getFieldEditorParent());
+		pathSelection = new CSListEditor(PATHSELECTION_KEY, "Paths (Autosave)", getFieldEditorParent());
 
 		addField(projectField);
 		addField(pathField);
 		addField(classField);
+		addField(pathSelection);
 	}
 
 }

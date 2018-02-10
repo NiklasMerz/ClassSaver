@@ -23,6 +23,7 @@ public class CSLog {
 	}
 
 	public static void log(int severity, int code, String message, Throwable exception) {
+		System.out.println(message);
 		log(createStatus(severity, code, message, exception));
 	}
 

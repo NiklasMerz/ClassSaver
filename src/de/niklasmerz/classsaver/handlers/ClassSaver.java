@@ -11,6 +11,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 import de.niklasmerz.classsaver.Activator;
@@ -31,6 +32,7 @@ public abstract class ClassSaver extends AbstractHandler implements
 	protected String project;
 	protected String className;
 	protected String workspacepath;
+	protected String[] paths;
 
 	/**
 	 * Get preferences
@@ -52,6 +54,7 @@ public abstract class ClassSaver extends AbstractHandler implements
 		path = preferenceStore.getString(PATH_KEY);
 		project = preferenceStore.getString(PROJECT_KEY);
 		className = preferenceStore.getString(CLASS_KEY);
+		paths = preferenceStore.getString(PATHSELECTION_KEY).split("~");
 
 	}
 
@@ -60,26 +63,49 @@ public abstract class ClassSaver extends AbstractHandler implements
 	 * 
 	 * @param project
 	 */
-	protected void saveProject(IProject project) {
-		if (project.exists()) {
-			try {
+	protected void saveProject(IProject project, boolean automode) {
+		try {
+			if (project.exists()) {
 				if (!project.isOpen()) {
 					project.open(null);
+
 				}
 
-				IFolder folder = project.getFolder(this.path);
-				if (folder.exists()) {
-					IFile file = folder.getFile(this.className);
-					InputStream in = file.getContents();
-					file.appendContents(in, true, false, null);
+				if (automode) {
+					this.saveFolder(this.path, project);
 				} else {
-					CSLog.logInfo("Folder not found");
+					for (String path : this.paths) {
+						this.saveFolder(path, project);
+					}
 				}
-
-			} catch (CoreException e) {
-				CSLog.logError(e);
 			}
+		} catch (CoreException e) {
+			CSLog.logError("Project not found", e);
+		}
+	}
 
+	/**
+	 * Get class from folder and append nothing to save file
+	 * 
+	 * @param folderPath
+	 * @param project
+	 */
+	private void saveFolder(String folderPath, IProject project) {
+		IFolder folder = project.getFolder(folderPath);
+		try {
+			if (folder.exists()) {
+				IFile file = folder.getFile(this.className);
+				InputStream in = file.getContents();
+				file.appendContents(in, true, false, null);
+				
+				String[] buttons = {"OK"};
+				MessageDialog dlg = new MessageDialog(null, "ClassSaver", null,
+						"Saved class" + folderPath + className,
+						MessageDialog.INFORMATION, buttons, 0);
+				dlg.open();
+			}
+		} catch (CoreException e) {
+			CSLog.logError(e);
 		}
 	}
 }

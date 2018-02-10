@@ -32,7 +32,7 @@ public class SaveHandler extends ClassSaver {
 		IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
 		IProject myProject = myWorkspaceRoot.getProject(this.project);
-		this.saveProject(myProject);
+		this.saveProject(myProject, false);
 		CSLog.logInfo(output);
 		return null;
 	}
