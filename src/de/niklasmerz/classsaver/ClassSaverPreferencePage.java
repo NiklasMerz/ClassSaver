@@ -51,10 +51,10 @@ public class ClassSaverPreferencePage extends FieldEditorPreferencePage
 
 	@Override
 	protected void createFieldEditors() {
-		projectField = new StringFieldEditor(PROJECT_KEY, "Project", getFieldEditorParent());
-		pathField = new StringFieldEditor(PATH_KEY, "Path", getFieldEditorParent());
-		classField = new StringFieldEditor(CLASS_KEY, "Class File", getFieldEditorParent());
-		pathSelection = new CSListEditor(PATHSELECTION_KEY, "Paths (Autosave)", getFieldEditorParent());
+		projectField = new StringFieldEditor(PROJECT_KEY, "Project (Normal Mode)", getFieldEditorParent());
+		pathField = new StringFieldEditor(PATH_KEY, "Path (Normal Mode)", getFieldEditorParent());
+		classField = new StringFieldEditor(CLASS_KEY, "Class file", getFieldEditorParent());
+		pathSelection = new CSListEditor(PATHSELECTION_KEY, "Paths to look for class (Autosave)", getFieldEditorParent());
 
 		addField(projectField);
 		addField(pathField);

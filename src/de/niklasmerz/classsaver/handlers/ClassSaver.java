@@ -71,7 +71,11 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 				if (automode) {
 					CSLog.logInfo("Paths: " + preferenceStore.getString(PATHSELECTION_KEY));
 					for (String path : this.paths) {
-						this.saveFolder(path, project);
+						boolean saved = this.saveFolder(path, project);
+						if(saved) {
+							CSLog.logInfo("Saved " + path);
+							break;
+						}
 					}
 				} else {
 					this.saveFolder(this.path, project);
@@ -88,7 +92,7 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 	 * @param folderPath
 	 * @param project
 	 */
-	private void saveFolder(String folderPath, IProject project) {
+	private boolean saveFolder(String folderPath, IProject project) {
 		try {
 			IFolder folder = project.getFolder(folderPath);
 			CSLog.logInfo(folder.getFullPath().toString());
@@ -98,9 +102,11 @@ public abstract class ClassSaver extends AbstractHandler implements ClassSaverSt
 				file.appendContents(in, true, false, null);
 
 				CSLog.logInfo(file.getFullPath().toString());
+				return true;
 			}
 		} catch (Exception e) {
 			CSLog.logError(e);
 		}
+		return false;
 	}
 }

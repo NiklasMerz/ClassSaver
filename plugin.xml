@@ -41,8 +41,8 @@
       <key
             commandId="ClassSaver.commands.autoSaveClass"
             contextId="org.eclipse.ui.contexts.window"
-            schemeId="com.ibm.designer.domino.designerAcceleratorConfigurationAll"
-            sequence="M1+9">
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M3+8">
       </key>
    </extension>
    <extension
@@ -57,13 +57,16 @@
                   commandId="ClassSaver.commands.saveClass"
                   icon="icons/8.gif"
                   id="ClassSaver.menus.saveClass"
-                  mnemonic="ClassSaverMenu">
+                  mnemonic="ClassSaverMenu"
+                  tooltip="Save class in configured project">
             </command>
             <command
                   commandId="ClassSaver.commands.autoSaveClass"
+                  icon="icons/9.gif"
                   id="ClassSaver.menus.autoSaveClass"
                   mnemonic="ClassSaverMenu"
-                  style="push">
+                  style="push"
+                  tooltip="Save class in current project">
             </command>
          </menu>
       </menuContribution>
@@ -74,15 +77,21 @@
             <command
                   commandId="ClassSaver.commands.saveClass"
                   icon="icons/8.gif"
-                  tooltip="Save Class"
+                  tooltip="Save class in configured project"
                   id="ClassSaver.toolbars.saveClass">
+            </command>
+            <command
+                  commandId="ClassSaverPlugin.command1"
+                  icon="icons/9.gif"
+                  label="Auto save class"
+                  tooltip="Auto save class in current project">
             </command>
          </toolbar>
       </menuContribution>
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
  	<page id="PreferencePage"
- 		name="Class Saver"
+ 		name="ClassSaver"
     		class="de.niklasmerz.classsaver.ClassSaverPreferencePage">
    	</page>
 	</extension>
