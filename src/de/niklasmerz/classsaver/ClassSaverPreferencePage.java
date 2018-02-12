@@ -42,10 +42,6 @@ public class ClassSaverPreferencePage extends FieldEditorPreferencePage
 	 * Save the preference to the preference store.
 	 */
 	public boolean performOk() {
-		projectField.store();
-		pathField.store();
-		classField.store();
-		pathSelection.store();
 		return super.performOk();
 	}
 
