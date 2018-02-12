@@ -81,7 +81,7 @@
                   id="ClassSaver.toolbars.saveClass">
             </command>
             <command
-                  commandId="ClassSaverPlugin.command1"
+                  commandId="ClassSaver.commands.autoSaveClass"
                   icon="icons/9.gif"
                   label="Auto save class"
                   tooltip="Auto save class in current project">
