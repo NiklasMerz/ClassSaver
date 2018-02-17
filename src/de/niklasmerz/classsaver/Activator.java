@@ -70,8 +70,6 @@ public class Activator extends AbstractUIPlugin implements ClassSaverStrings {
 	 * plug-in.
 	 */
 	protected void initializeDefaultPreferences(IPreferenceStore store) {
-		store.setDefault(PATH_KEY, DEFAULT_PATH);
-		store.setDefault(PROJECT_KEY, DEFAULT_PROJECT);
 		store.setDefault(CLASS_KEY, DEFAULT_CLASS);
 	}
 }

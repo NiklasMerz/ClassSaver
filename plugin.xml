@@ -9,22 +9,13 @@
             id="ClassSaver.commands.category">
       </category>
       <command
-            name="Save Class"
-            categoryId="ClassSaver.commands.category"
-            id="ClassSaver.commands.saveClass">
-      </command>
-      <command
             categoryId="ClassSaver.commands.category"
             id="ClassSaver.commands.autoSaveClass"
-            name="Auto Save Class">
+            name="Save Class">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
-      <handler
-            commandId="ClassSaver.commands.saveClass"
-            class="de.niklasmerz.classsaver.handlers.SaveHandler">
-      </handler>
       <handler
             class="de.niklasmerz.classsaver.handlers.AutoSaveHandler"
             commandId="ClassSaver.commands.autoSaveClass">
@@ -32,12 +23,6 @@
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
-      <key
-            commandId="ClassSaver.commands.saveClass"
-            contextId="org.eclipse.ui.contexts.window"
-            sequence="M1+8"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
-      </key>
       <key
             commandId="ClassSaver.commands.autoSaveClass"
             contextId="org.eclipse.ui.contexts.window"
@@ -54,16 +39,10 @@
                mnemonic="ClassSaverMenu"
                id="ClassSaver.menus.sampleMenu">
             <command
-                  commandId="ClassSaver.commands.saveClass"
-                  icon="icons/8.gif"
-                  id="ClassSaver.menus.saveClass"
-                  mnemonic="ClassSaverMenu"
-                  tooltip="Save class in configured project">
-            </command>
-            <command
                   commandId="ClassSaver.commands.autoSaveClass"
-                  icon="icons/9.gif"
+                  icon="icons/8.gif"
                   id="ClassSaver.menus.autoSaveClass"
+                  label="Save class"
                   mnemonic="ClassSaverMenu"
                   style="push"
                   tooltip="Save class in current project">
@@ -75,16 +54,10 @@
          <toolbar
                id="ClassSaver.toolbars.classSaverToolbar">
             <command
-                  commandId="ClassSaver.commands.saveClass"
-                  icon="icons/8.gif"
-                  tooltip="Save class in configured project"
-                  id="ClassSaver.toolbars.saveClass">
-            </command>
-            <command
                   commandId="ClassSaver.commands.autoSaveClass"
-                  icon="icons/9.gif"
-                  label="Auto save class"
-                  tooltip="Auto save class in current project">
+                  icon="icons/8.gif"
+                  label="Save class"
+                  tooltip="Save class in current project">
             </command>
          </toolbar>
       </menuContribution>

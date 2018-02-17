@@ -18,8 +18,6 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 public class ClassSaverPreferencePage extends FieldEditorPreferencePage
 		implements IWorkbenchPreferencePage, ClassSaverStrings {
 
-	private StringFieldEditor pathField;
-	private StringFieldEditor projectField;
 	private StringFieldEditor classField;
 	private ListEditor pathSelection;
 
@@ -32,8 +30,6 @@ public class ClassSaverPreferencePage extends FieldEditorPreferencePage
 	 * Load defaults
 	 */
 	protected void performDefaults() {
-		projectField.loadDefault();
-		pathField.loadDefault();
 		classField.loadDefault();
 		pathSelection.loadDefault();
 	}
@@ -47,13 +43,9 @@ public class ClassSaverPreferencePage extends FieldEditorPreferencePage
 
 	@Override
 	protected void createFieldEditors() {
-		projectField = new StringFieldEditor(PROJECT_KEY, "Project (Normal Mode)", getFieldEditorParent());
-		pathField = new StringFieldEditor(PATH_KEY, "Path (Normal Mode)", getFieldEditorParent());
 		classField = new StringFieldEditor(CLASS_KEY, "Class file", getFieldEditorParent());
-		pathSelection = new CSListEditor(PATHSELECTION_KEY, "Paths to look for class (Autosave)", getFieldEditorParent());
+		pathSelection = new CSListEditor(PATHSELECTION_KEY, "Paths to look for class", getFieldEditorParent());
 
-		addField(projectField);
-		addField(pathField);
 		addField(classField);
 		addField(pathSelection);
 	}
