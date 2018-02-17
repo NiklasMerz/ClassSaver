@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/ClassSaver_1.0.0.jar" id="ClassSaver" version="1.0.0">
+      <category name="ClassSaver"/>
+   </feature>
+   <category-def name="ClassSaver" label="ClassSaver"/>
+</site>
