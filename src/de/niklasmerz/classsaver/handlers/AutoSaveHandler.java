@@ -18,6 +18,9 @@ import de.niklasmerz.classsaver.CSLog;
  * @author niklas
  */
 public class AutoSaveHandler extends ClassSaver {
+	IWorkbenchPage activePage;
+	IEditorPart activeEditor;
+	
 	/**
 	 * Constructor loads settings
 	 */
@@ -27,16 +30,16 @@ public class AutoSaveHandler extends ClassSaver {
 	}
 
 	/**
-	 * Save configured file
+	 * Save current file
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		loadSettings();
 
 		IWorkbenchWindow window = PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow();
-		IWorkbenchPage activePage = window.getActivePage();
+		this.activePage = window.getActivePage();
 
-		IEditorPart activeEditor = activePage.getActiveEditor();
+		this.activeEditor = activePage.getActiveEditor();
 
 		if (activeEditor != null) {
 			IEditorInput input = activeEditor.getEditorInput();
