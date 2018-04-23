@@ -42,7 +42,7 @@
             commandId="ClassSaver.commands.autoSaveFileAndClass"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+M3+S">
+            sequence="M1+M2+S">
       </key>
    </extension>
    <extension
