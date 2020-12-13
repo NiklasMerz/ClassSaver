@@ -73,24 +73,6 @@
             </command>
          </menu>
       </menuContribution>
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
-         <toolbar
-               id="ClassSaver.toolbars.classSaverToolbar">
-            <command
-                  commandId="ClassSaver.commands.autoSaveClass"
-                  icon="icons/8.gif"
-                  label="Save class"
-                  tooltip="Save class in current project">
-            </command>
-            <command
-                  commandId="ClassSaver.commands.autoSaveFileAndClass"
-                  icon="icons/8.gif"
-                  label="Save file and class"
-                  tooltip="Save current file and class in current project">
-            </command>
-         </toolbar>
-      </menuContribution>
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
  	<page id="PreferencePage"
